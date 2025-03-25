@@ -5,18 +5,33 @@ function App() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
 
+  const formatResponse = (text) => {
+    return text
+      .split("\n")
+      .map((line) => {
+        if (line.includes(":")) {
+          const [title, ...desc] = line.split(":");
+          return `<p><strong>${title.trim()}:</strong> ${desc
+            .join(":")
+            .trim()}</p>`;
+        }
+        return `<p>• ${line.trim()}</p>`;
+      })
+      .join("");
+  };
+
   const handleGenerate = async () => {
     if (!input) return;
     setResponse("Generating...");
     const aiResponse = await getGeminiResponse(input);
-    setResponse(aiResponse);
+    setResponse(formatResponse(aiResponse));
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 p-4">
       <div className="w-full max-w-lg bg-gray-800 p-6 rounded-xl shadow-lg">
         <h1 className="text-2xl font-bold text-white text-center">
-          AI Chat Bot
+          SHAI CHAT BOT
         </h1>
 
         <textarea
