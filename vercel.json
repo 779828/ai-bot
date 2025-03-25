@@ -2,14 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/",
-      "permanent": true
+      "destination": "/index.html"
     }
   ],
   "headers": [
