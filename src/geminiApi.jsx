@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// https://bot-api-lxro.vercel.app/api/gemini
+
 /**
  * Sends a request to the backend server to get AI-generated content.
  * @param {string} prompt - The user's input.
