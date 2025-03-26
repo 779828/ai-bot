@@ -7,9 +7,12 @@ import axios from "axios";
  */
 export const getGeminiResponse = async (prompt) => {
   try {
-    const response = await axios.post("http://localhost:8090/api/shai", {
-      contents: [{ parts: [{ text: prompt }] }],
-    });
+    const response = await axios.post(
+      "https://bot-api-lxro.vercel.app/api/shai",
+      {
+        contents: [{ parts: [{ text: prompt }] }],
+      }
+    );
 
     return (
       response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
