@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// https://bot-api-lxro.vercel.app/api/gemini
-
 /**
  * Sends a request to the backend server to get AI-generated content.
  * @param {string} prompt - The user's input.
@@ -9,19 +7,16 @@ import axios from "axios";
  */
 export const getGeminiResponse = async (prompt) => {
   try {
-    const response = await axios.post(
-      "https://bot-api-lxro.vercel.app/api/gemini",
-      {
-        contents: [{ parts: [{ text: prompt }] }],
-      }
-    );
+    const response = await axios.post("http://localhost:8090/api/shai", {
+      contents: [{ parts: [{ text: prompt }] }],
+    });
 
     return (
       response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       "No response received."
     );
   } catch (error) {
-    console.error("Error fetching response:", error);
+    console.error("Error fetching response:", error.message);
     return "Error connecting to AI.";
   }
 };
